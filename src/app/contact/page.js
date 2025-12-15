@@ -111,7 +111,7 @@ export default function Contact() {
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Head Office</h3>
                                 <p className="text-gray-600 mb-4">
-                                    1382/18, Surat Nagar Phase 2, Gurugram - 122006
+                                    Surat Nagar Phase 2, Gurugram - 122006
                                 </p>
                             </div>
                             <div className="h-64 bg-gray-100 flex items-center justify-center">
@@ -140,7 +140,7 @@ export default function Contact() {
                                     <h3 className="text-xl font-semibold text-gray-900">Head Office</h3>
                                 </div>
                                 <p className="text-gray-600 ml-9">
-                                    1382/18, Surat Nagar Phase 2,<br />
+                                    Surat Nagar Phase 2,<br />
                                     Gurugram - 122006
                                 </p>
                             </div>
@@ -174,8 +174,8 @@ export default function Contact() {
                             {/* Notification Banner */}
                             {notification.show && (
                                 <div className={`p-4 mb-6 rounded-lg ${notification.type === 'success'
-                                        ? 'bg-green-50 text-green-800 border border-green-200'
-                                        : 'bg-red-50 text-red-800 border border-red-200'
+                                    ? 'bg-green-50 text-green-800 border border-green-200'
+                                    : 'bg-red-50 text-red-800 border border-red-200'
                                     }`}>
                                     {notification.message}
                                 </div>

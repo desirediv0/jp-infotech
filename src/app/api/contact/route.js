@@ -3,51 +3,51 @@ import nodemailer from "nodemailer";
 
 // Email configuration
 const transporter = nodemailer.createTransport({
-    host: process.env.NEXT_PUBLIC_SMTP_HOST,
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: process.env.NEXT_PUBLIC_SMTP_USER,
-        pass: process.env.NEXT_PUBLIC_SMTP_PASSWORD,
-    },
+  host: process.env.NEXT_PUBLIC_SMTP_HOST,
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.NEXT_PUBLIC_SMTP_USER,
+    pass: process.env.NEXT_PUBLIC_SMTP_PASSWORD,
+  },
 });
 
 export async function POST(request) {
-    try {
-        // Check if environment variables are set
-        if (
-            !process.env.NEXT_PUBLIC_SMTP_HOST ||
-            !process.env.NEXT_PUBLIC_SMTP_USER ||
-            !process.env.NEXT_PUBLIC_SMTP_PASSWORD
-        ) {
-            console.error("Missing SMTP environment variables");
-            return NextResponse.json(
-                { error: "Email service configuration error" },
-                { status: 500 }
-            );
-        }
+  try {
+    // Check if environment variables are set
+    if (
+      !process.env.NEXT_PUBLIC_SMTP_HOST ||
+      !process.env.NEXT_PUBLIC_SMTP_USER ||
+      !process.env.NEXT_PUBLIC_SMTP_PASSWORD
+    ) {
+      console.error("Missing SMTP environment variables");
+      return NextResponse.json(
+        { error: "Email service configuration error" },
+        { status: 500 }
+      );
+    }
 
-        const { name, email, subject, message } = await request.json();
+    const { name, email, subject, message } = await request.json();
 
-        // Validate required fields
-        if (!name || !email || !subject || !message) {
-            return NextResponse.json(
-                { error: "All fields are required" },
-                { status: 400 }
-            );
-        }
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 }
+      );
+    }
 
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return NextResponse.json(
-                { error: "Please enter a valid email address" },
-                { status: 400 }
-            );
-        }
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address" },
+        { status: 400 }
+      );
+    }
 
-        // Email template
-        const emailTemplate = `
+    // Email template
+    const emailTemplate = `
       <!DOCTYPE html>
       <html>
       <head>
@@ -155,18 +155,18 @@ export async function POST(request) {
           <div class="footer">
             <p>This message was sent from the JP InfoTech website contact form.</p>
             <p>Submitted on: ${new Date().toLocaleString("en-IN", {
-            timeZone: "Asia/Kolkata",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-        })}</p>
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })}</p>
           </div>
           
           <div class="company-info">
             <p>JP InfoTech</p>
-            <p>1382/18, Surat Nagar Phase 2, Gurugram - 122006</p>
+            <p> Surat Nagar Phase 2, Gurugram - 122006</p>
             <p>Email: sales@jpinfotech.net.in | Phone: +91-9667092504</p>
           </div>
         </div>
@@ -174,8 +174,8 @@ export async function POST(request) {
       </html>
     `;
 
-        // Template for user's thank you email
-        const userEmailTemplate = `
+    // Template for user's thank you email
+    const userEmailTemplate = `
       <!DOCTYPE html>
       <html>
       <head>
@@ -265,13 +265,13 @@ export async function POST(request) {
             <p>Reference: #${Date.now().toString().slice(-8)}</p>
             <p>About: ${subject}</p>
             <p>Sent on: ${new Date().toLocaleString("en-IN", {
-            timeZone: "Asia/Kolkata",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-        })}</p>
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })}</p>
           </div>
           
           <div class="footer">
@@ -281,7 +281,7 @@ export async function POST(request) {
           
           <div class="company-info">
             <p>JP InfoTech</p>
-            <p>1382/18, Surat Nagar Phase 2, Gurugram - 122006</p>
+            <p> Surat Nagar Phase 2, Gurugram - 122006</p>
             <p>Email: sales@jpinfotech.net.in | Phone: +91-9667092504</p>
           </div>
         </div>
@@ -289,44 +289,44 @@ export async function POST(request) {
       </html>
     `;
 
-        // Send email to admin
-        const adminMailOptions = {
-            from: process.env.NEXT_PUBLIC_FROM_EMAIL,
-            to: process.env.NEXT_PUBLIC_TO_EMAIL,
-            subject: `New Contact Form Submission: ${subject}`,
-            html: emailTemplate,
-            replyTo: email,
-        };
+    // Send email to admin
+    const adminMailOptions = {
+      from: process.env.NEXT_PUBLIC_FROM_EMAIL,
+      to: process.env.NEXT_PUBLIC_TO_EMAIL,
+      subject: `New Contact Form Submission: ${subject}`,
+      html: emailTemplate,
+      replyTo: email,
+    };
 
-        // Send email to user
-        const userMailOptions = {
-            from: process.env.NEXT_PUBLIC_FROM_EMAIL,
-            to: email,
-            subject: `Thank You for Contacting JP InfoTech`,
-            html: userEmailTemplate,
-        };
+    // Send email to user
+    const userMailOptions = {
+      from: process.env.NEXT_PUBLIC_FROM_EMAIL,
+      to: email,
+      subject: `Thank You for Contacting JP InfoTech`,
+      html: userEmailTemplate,
+    };
 
-        // Send both emails
-        await Promise.all([
-            transporter.sendMail(adminMailOptions),
-            transporter.sendMail(userMailOptions)
-        ]);
+    // Send both emails
+    await Promise.all([
+      transporter.sendMail(adminMailOptions),
+      transporter.sendMail(userMailOptions)
+    ]);
 
-        return NextResponse.json(
-            {
-                success: true,
-                message:
-                    "Your message has been sent successfully! We will get back to you soon.",
-            },
-            { status: 200 }
-        );
-    } catch (error) {
-        console.error("Email sending error:", error);
-        return NextResponse.json(
-            {
-                error: "Failed to send message. Please try again later.",
-            },
-            { status: 500 }
-        );
-    }
+    return NextResponse.json(
+      {
+        success: true,
+        message:
+          "Your message has been sent successfully! We will get back to you soon.",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Email sending error:", error);
+    return NextResponse.json(
+      {
+        error: "Failed to send message. Please try again later.",
+      },
+      { status: 500 }
+    );
+  }
 }
