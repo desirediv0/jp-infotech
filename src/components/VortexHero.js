@@ -8,14 +8,12 @@ export function VortexHero() {
 
     const slides = [
         {
-
             description: "To deliver smart, affordable, and scalable IT integration solutions that simplify technology and empower people."
         },
         {
             description: "JP Infotech strives to be your trusted partner in technology. With a focus on delivering quality products, we offer the latest laptops, accessories, and network devices, always ensuring reliability, performance, and customer satisfaction."
         },
         {
-
             description: "We constantly strive to innovate, adapt, and improve, ensuring that our products and services remain at the cutting edge of the tech industry."
         }
     ];

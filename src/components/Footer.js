@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
+import { FiLinkedin, FiMail } from 'react-icons/fi';
 
 const Footer = () => {
     return (
@@ -45,11 +45,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
                         <div className="space-y-2 text-sm text-gray-200">
-                            <p>1382/18</p>
                             <p>Surat Nagar Phase 2</p>
                             <p>Gurugram- 122006</p>
                             <p>Phone: +91-9667092504</p>
-                            <p>Email: sales@jpinfotech.net.in</p>
+                            <p></p>
                         </div>
                     </div>
 
@@ -57,15 +56,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Connect Us</h3>
                         <div className="flex space-x-4">
-                            {/* <a href="#" className="text-gray-200 hover:text-white transition-colors">
-                                <FiTwitter size={24} />
-                            </a>
-                            <a href="#" className="text-gray-200 hover:text-white transition-colors">
-                                <FiLinkedin size={24} />
-                            </a> */}
                             <a href="mailto:sales@jpinfotech.net.in" className="text-gray-200 hover:text-white transition-colors">
                                 <FiMail size={24} />
                             </a>
+                            <span>sales@jpinfotech.net.in</span>
                         </div>
                     </div>
                 </div>
