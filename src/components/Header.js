@@ -22,7 +22,7 @@ const Header = () => {
                 <Link href={"/"} className="flex items-center rounded-md">
                     <Image
                         src="/logo.jpeg"
-                        alt="JP IFNOTECH Logo"
+                        alt="JP INFOTECH Logo"
                         width={250}
                         height={250}
 

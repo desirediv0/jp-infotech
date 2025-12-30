@@ -8,7 +8,7 @@ export default function Services() {
         {
             icon: "shield",
             title: "Security",
-            description: "JP IFNOTECH provide various type of security like as Gateway level security, that protect your data from unauthorized access.",
+            description: "JP INFOTECH provide various type of security like as Gateway level security, that protect your data from unauthorized access.",
             features: [
                 "Firewall & Gateway Level Security Solutions",
                 "End Host Security",

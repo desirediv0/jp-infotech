@@ -28,7 +28,7 @@ const WhyChooseUs = () => {
                 {/* Section Title */}
                 <div className="text-center mb-16">
                     <h2 className="text-3xl  font-bold text-gray-900 mb-4">
-                        Why Choose JP IFNOTECH?
+                        Why Choose JP INFOTECH?
                     </h2>
                 </div>
 
